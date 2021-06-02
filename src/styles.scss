@@ -1,4 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+html,
+body {
+    height: 100%;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+body {
+    --primary: #cc3333;
+    --primary-lighter: #f0c2c2;
+    --primary-darker: #b92020;
+    --accent: #9d9b9b;
+    --accent-lighter: #e2e1e1;
+    --accent-darker: #817f7f;
+    --warn: #f4ff00;
+    --warn-lighter: #fcffb3;
+    --warn-darker: #efff00;
+}
