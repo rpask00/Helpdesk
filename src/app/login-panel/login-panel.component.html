@@ -1,0 +1,13 @@
+<form [formGroup]="form">
+  <h1>Logowanie do panelu</h1>
+  <mat-form-field class="example-full-width">
+    <mat-label>Nazwa</mat-label>
+    <input formControlName='username'  matInput type="text">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Hasło</mat-label>
+    <input formControlName='password' matInput type="password">
+  </mat-form-field>
+
+  <button (click)="login($event)" mat-raised-button color="accent">Zaloguj</button>
+</form>
