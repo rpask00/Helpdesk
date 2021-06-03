@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Helpdesk';
+
+  user$: Observable<any>
+  constructor(
+    private userSv: UserService
+  ) {
+    this.user$ = this.userSv.user$;
+  }
+
+  logout() {
+    this.userSv.logout()
+  }
+
+
 }

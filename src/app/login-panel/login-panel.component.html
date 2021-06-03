@@ -2,12 +2,20 @@
   <h1>Logowanie do panelu</h1>
   <mat-form-field class="example-full-width">
     <mat-label>Nazwa</mat-label>
-    <input formControlName='username'  matInput type="text">
+    <input formControlName='username' matInput type="text">
+    <mat-error *ngIf="form.controls.username.hasError('required')">
+      Nazwa jest <strong>wymagana</strong>
+    </mat-error>
   </mat-form-field>
   <mat-form-field class="example-full-width">
     <mat-label>Hasło</mat-label>
     <input formControlName='password' matInput type="password">
+    <mat-error *ngIf="form.controls.password.hasError('required')">
+      Hasło jest <strong>wymagane</strong>
+    </mat-error>
   </mat-form-field>
 
-  <button (click)="login($event)" mat-raised-button color="accent">Zaloguj</button>
+  <p class="error">{{errorMessage}}</p>
+
+  <button [disabled]="!form.valid" (click)="login($event)" mat-raised-button color="accent">Zaloguj</button>
 </form>
