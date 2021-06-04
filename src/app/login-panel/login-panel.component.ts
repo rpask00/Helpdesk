@@ -30,10 +30,7 @@ export class LoginPanelComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.userSv.user$.subscribe(console.log)
-
-  }
+  ngOnInit() { }
 
   async login(e: Event) {
     e.preventDefault();

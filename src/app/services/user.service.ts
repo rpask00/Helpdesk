@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import * as CryptoJS from 'crypto-js';
 import * as $ from "jquery";
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +44,13 @@ export class UserService {
   get user$() {
     return this.userID$.asObservable();
   }
+
+  get user(): Promise<string> {
+    return new Promise(resolve => {
+      this.userID$.pipe(take(1)).subscribe(resolve);
+    })
+  }
+
 
   private setCookie(c_name: string, value: any, exhours: number) {
     var exdate = new Date();

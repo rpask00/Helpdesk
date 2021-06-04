@@ -6,6 +6,12 @@ import { IsloggedoutGuard } from './guards/isloggedout.guard';
 import { LoginPanelComponent } from './login-panel/login-panel.component';
 
 const routes: Routes = [
+
+  {
+    path: '',
+    pathMatch: "full",
+    redirectTo: 'cases/list'
+  },
   {
     path: "case/new",
     component: CasesFormComponent

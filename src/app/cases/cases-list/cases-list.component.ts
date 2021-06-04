@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import * as $ from "jquery";
+import { UserService } from './../../services/user.service';
+import { ApiService } from './../../services/api.service';
 
 @Component({
   selector: 'app-cases-list',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CasesListComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit(): void {
+  constructor(
+    private apiSv: ApiService
+  ) { }
+
+  async ngOnInit() {
+
+    console.log(await this.apiSv.getCasesList());
+
   }
-
 }
