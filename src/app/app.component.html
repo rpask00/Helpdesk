@@ -1,13 +1,13 @@
 <mat-toolbar color="primary">
-  <button mat-button (click)="logout()" [routerLink]="['login']" *ngIf="user$ | async as user;else logged">Wyloguj</button>
+  <button mat-button (click)="logout()" *ngIf="session$ | async as session;else logged">Wyloguj</button>
 
   <ng-template #logged>
     <button mat-button [routerLink]="['login']">Zaloguj</button>
   </ng-template>
 
 
-  <button mat-button [routerLink]=" ['cases','list']">Lista zgłoszeń</button>
-  <button mat-button [routerLink]="['case','new']">Nowe zgłoszenie</button>
+  <button *ngIf="session$ | async as session"  mat-button [routerLink]=" ['cases','list']">Lista zgłoszeń</button>
+  <button *ngIf="session$ | async as session"  mat-button [routerLink]="['case','new']">Nowe zgłoszenie</button>
 
 
 </mat-toolbar>

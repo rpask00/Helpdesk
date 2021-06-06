@@ -7,14 +7,14 @@ import { take } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class LoggingService {
 
   private url = "http://hdropczyce.e-bi.pl/service/v4_1/rest.php"
-  private userID$: BehaviorSubject<string> = new BehaviorSubject('');
+  private sessionSub$: BehaviorSubject<string> = new BehaviorSubject('');
 
   constructor() {
     let ssid = this.readCookie("PHPSESSID")
-    if (ssid) this.userID$.next(ssid)
+    if (ssid) this.sessionSub$.next(ssid)
   }
 
   async login(user_name: string, password: string) {
@@ -31,23 +31,31 @@ export class UserService {
     })
 
     if (user.id) {
-      this.userID$.next(user.id)
+      this.sessionSub$.next(user.id)
       this.setCookie("PHPSESSID", user.id, 24)
     }
   }
 
-  logout() {
-    this.userID$.next("")
+  async logout() {
+    let session = this.readCookie("PHPSESSID")
+
+    if (session)
+      await $.post(this.url, {
+        method: "logout",
+        rest_data: JSON.stringify({ session })
+      })
+
+    this.sessionSub$.next("")
     this.setCookie("PHPSESSID", "", 0)
   }
 
-  get user$() {
-    return this.userID$.asObservable();
+  get session$() {
+    return this.sessionSub$.asObservable();
   }
 
-  get user(): Promise<string> {
+  get session(): Promise<string> {
     return new Promise(resolve => {
-      this.userID$.pipe(take(1)).subscribe(resolve);
+      this.sessionSub$.pipe(take(1)).subscribe(resolve);
     })
   }
 

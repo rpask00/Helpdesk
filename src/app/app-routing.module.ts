@@ -4,6 +4,7 @@ import { CasesFormComponent } from './cases/cases-form/cases-form.component';
 import { CasesListComponent } from './cases/cases-list/cases-list.component';
 import { IsloggedoutGuard } from './guards/isloggedout.guard';
 import { LoginPanelComponent } from './login-panel/login-panel.component';
+import { IsLoggedInGuard } from './guards/is-logged-in.guard';
 
 const routes: Routes = [
 
@@ -14,6 +15,7 @@ const routes: Routes = [
   },
   {
     path: "case/new",
+    canActivate: [IsLoggedInGuard],
     component: CasesFormComponent
   },
   {
@@ -23,6 +25,7 @@ const routes: Routes = [
   },
   {
     path: "cases/list",
+    canActivate: [IsLoggedInGuard],
     component: CasesListComponent
   }
 ];

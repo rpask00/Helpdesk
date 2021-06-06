@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
-import { UserService } from './../services/user.service';
+import { LoggingService } from '../services/logging.service';
 
 
 @Component({
@@ -15,7 +15,7 @@ export class LoginPanelComponent implements OnInit {
   form: FormGroup;
   errorMessage = '';
   constructor(
-    private userSv: UserService,
+    private loggingSv: LoggingService,
     private router: Router
   ) {
     this.form = new FormGroup({
@@ -34,10 +34,10 @@ export class LoginPanelComponent implements OnInit {
 
   async login(e: Event) {
     e.preventDefault();
-    await this.userSv.login(this.form.value.username, this.form.value.password)
+    await this.loggingSv.login(this.form.value.username, this.form.value.password)
 
-    this.userSv.user$.pipe(take(1)).subscribe(user => {
-      if (user)
+    this.loggingSv.session$.pipe(take(1)).subscribe(session => {
+      if (session)
         this.router.navigate(["cases", "list"])
       else
         this.errorMessage = "Nie prawidłowa nazwa lub hasło."

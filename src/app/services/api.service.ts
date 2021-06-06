@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as CryptoJS from 'crypto-js';
 import * as $ from "jquery";
-import { UserService } from './user.service';
+import { LoggingService } from './logging.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,18 +13,29 @@ export class ApiService {
 
   constructor(
     private http: HttpClient,
-    private userSv: UserService
+    private loggingSv: LoggingService
   ) { }
 
-  async getCasesList(): Promise<any> {
+  async getModuleEntries(module_name: string, offset: number = 0): Promise<any> {
     return await $.post(this.url, {
       method: "get_entry_list",
       input_type: "JSON",
       response_type: "JSON",
       rest_data: JSON.stringify({
-        session: await this.userSv.user,
-        module_name: "Cases",
+        session: await this.loggingSv.session,
+        module_name,
+        offset
       })
+
+    })
+  }
+
+  async getModules(): Promise<any> {
+    return await $.post(this.url, {
+      method: "get_available_modules",
+      input_type: "JSON",
+      response_type: "JSON",
+      rest_data: JSON.stringify({ session: await this.loggingSv.session })
 
     })
   }
