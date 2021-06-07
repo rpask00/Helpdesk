@@ -16,7 +16,7 @@ export class ApiService {
     private loggingSv: LoggingService
   ) { }
 
-  async getModuleEntries(module_name: string, offset: number = 0): Promise<any> {
+  async getModuleEntries(module_name: string, offset: number = 1): Promise<any> {
     return await $.post(this.url, {
       method: "get_entry_list",
       input_type: "JSON",

@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   session$: Observable<any>
   constructor(
     private loggingSv: LoggingService,
+    private apiSv: ApiService,
     private router: Router
   ) {
     this.session$ = this.loggingSv.session$;
@@ -25,7 +26,7 @@ export class AppComponent implements OnInit {
 
   async ngOnInit() {
     // console.log(await this.apiSv.getModules());
-    // console.log(await this.apiSv.getModuleEntries("Users"));
+    // console.log(await this.apiSv.getModuleEntries("Cases"));
   }
 
 }

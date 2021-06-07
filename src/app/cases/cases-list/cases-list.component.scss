@@ -1,6 +1,22 @@
-table {
-    width: 80%;
+.container {
+    width: 90%;
     margin-left: auto;
     margin-right: auto;
+}
+
+table {
+    width: 100%;
     margin-top: 20px;
+    table-layout: fixed;
+}
+
+th,
+td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: wrap;
+}
+
+th {
+    font-weight: 900;
 }

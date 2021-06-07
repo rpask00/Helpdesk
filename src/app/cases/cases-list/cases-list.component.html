@@ -1,52 +1,63 @@
-  <!-- <table *ngIf="cases" mat-table [dataSource]="cases" class="mat-elevation-z8">
+<div class="container">
+  <table *ngIf="cases" mat-table [dataSource]="cases" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="check">
+      <th [style.width]="'2%'" mat-header-cell *matHeaderCellDef> </th>
+      <td [style.width]="'2%'" mat-cell *matCellDef="let case">
+        <mat-checkbox></mat-checkbox>
+      </td>
+    </ng-container>
 
     <ng-container matColumnDef="Numer">
-      <th mat-header-cell *matHeaderCellDef> Numer </th>
-      <td mat-cell *matCellDef="let case"> {{case.case_number.value}} </td>
+      <th [style.width]="'3%'" mat-header-cell *matHeaderCellDef> Numer </th>
+      <td [style.width]="'3%'" mat-cell *matCellDef="let case"> {{case.case_number}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Temat">
-      <th mat-header-cell *matHeaderCellDef> Temat </th>
-      <td mat-cell *matCellDef="let case"> {{case.name.value}} </td>
+      <th [style.width]="'30%'" mat-header-cell *matHeaderCellDef> Temat </th>
+      <td [style.width]="'30%'" mat-cell *matCellDef="let case"> {{case.name}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Aplikacja">
-      <th mat-header-cell *matHeaderCellDef> Aplikacja </th>
-      <td mat-cell *matCellDef="let case"> {{case.account_name.value}} </td>
+      <th [style.width]="'5%'" mat-header-cell *matHeaderCellDef> Aplikacja </th>
+      <td [style.width]="'5%'" mat-cell *matCellDef="let case"> {{case.account_name}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Status">
-      <th mat-header-cell *matHeaderCellDef> Status </th>
-      <td mat-cell *matCellDef="let case"> {{case.status.value}} </td>
+      <th [style.width]="'10%'" mat-header-cell *matHeaderCellDef> Status </th>
+      <td [style.width]="'10%'" mat-cell *matCellDef="let case"> {{case.status}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Ważnść">
-      <th mat-header-cell *matHeaderCellDef> Ważnść </th>
-      <td mat-cell *matCellDef="let case"> {{case.waznosc_c.value}} </td>
+      <th [style.width]="'10%'" mat-header-cell *matHeaderCellDef> Ważnść </th>
+      <td [style.width]="'10%'" mat-cell *matCellDef="let case"> {{case.waznosc_c}} </td>
     </ng-container>
 
 
     <ng-container matColumnDef="Rodzaj">
-      <th mat-header-cell *matHeaderCellDef> Rodzaj </th>
-      <td mat-cell *matCellDef="let case"> {{case.Rodzaj.value}} </td>
+      <th [style.width]="'10%'" mat-header-cell *matHeaderCellDef> Rodzaj </th>
+      <td [style.width]="'10%'" mat-cell *matCellDef="let case"> {{case.Rodzaj}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Data wprowadzenia">
-      <th mat-header-cell *matHeaderCellDef> Data wprowadzenia </th>
-      <td mat-cell *matCellDef="let case"> {{case.Data_wprowadzenia.value}} </td>
+      <th [style.width]="'10%'" mat-header-cell *matHeaderCellDef> Data wprowadzenia </th>
+      <td [style.width]="'10%'" mat-cell *matCellDef="let case"> {{formDate(case.date_entered)}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Gwarantowany termin">
-      <th mat-header-cell *matHeaderCellDef> Gwarantowany termin </th>
-      <td mat-cell *matCellDef="let case"> {{case.Gwarantowany_termin.value}} </td>
+      <th [style.width]="'10%'" mat-header-cell *matHeaderCellDef> Gwarantowany termin </th>
+      <td [style.width]="'10%'" mat-cell *matCellDef="let case"> {{case.termin_realizacji_c}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Przydzielona do">
-      <th mat-header-cell *matHeaderCellDef> Przydzielona do </th>
-      <td mat-cell *matCellDef="let case"> {{case.Przydzielone_do.value}} </td>
+      <th [style.width]="'10%'" mat-header-cell *matHeaderCellDef> Przydzielona do </th>
+      <td [style.width]="'10%'" mat-cell *matCellDef="let case"> {{case.assigned_user_name}} </td>
     </ng-container>
 
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table> -->
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+</div>
