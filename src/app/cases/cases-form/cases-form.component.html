@@ -2,9 +2,9 @@
   <h1>Dane podstawowe</h1>
   <div class="row">
     <div class="col">
-      <mat-form-field>
+      <mat-form-field *ngIf="this.id">
         <mat-label>Numer</mat-label>
-        <input matInput disabled=true [value]="case.case_number">
+        <input matInput [value]="case.case_number" disabled=true>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
@@ -81,5 +81,6 @@
     </mat-form-field>
   </div>
 
-  <button (click)="submit()"  mat-raised-button color="primary">Zatwierdź</button>
+  <button (click)="submit()" mat-raised-button color="primary">Zatwierdź</button>
+
 </form>
