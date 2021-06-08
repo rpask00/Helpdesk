@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CasesListComponent } from './cases/cases-list/cases-list.component';
 import { CasesFormComponent } from './cases/cases-form/cases-form.component';
+import { MatCheckboxDefaultOptions, MAT_CHECKBOX_DEFAULT_OPTIONS } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import { CasesFormComponent } from './cases/cases-form/cases-form.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_CHECKBOX_DEFAULT_OPTIONS, useValue: { clickAction: 'noop' } as MatCheckboxDefaultOptions}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,21 +1,31 @@
 <div class="container">
-  <table *ngIf="cases" mat-table [dataSource]="cases" class="mat-elevation-z8">
+  <table mat-table [dataSource]="cases" class="mat-elevation-z8">
 
     <ng-container matColumnDef="check">
       <th [style.width]="'2%'" mat-header-cell *matHeaderCellDef> </th>
       <td [style.width]="'2%'" mat-cell *matCellDef="let case">
-        <mat-checkbox></mat-checkbox>
+        <!-- <input type="checkbox" [checked]="checkedList.has(case.id)" (change)=check(case.id)> -->
+        <mat-checkbox [checked]="checkedList.has( case.id)" (click)=check(case.id)></mat-checkbox>
       </td>
     </ng-container>
 
     <ng-container matColumnDef="Numer">
-      <th [style.width]="'3%'" mat-header-cell *matHeaderCellDef> Numer </th>
-      <td [style.width]="'3%'" mat-cell *matCellDef="let case"> {{case.case_number}} </td>
+      <th [style.width]="'2%'" mat-header-cell *matHeaderCellDef> Numer </th>
+      <td [style.width]="'2%'" mat-cell *matCellDef="let case"> {{case.case_number}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Edit">
+      <th [style.width]="'3%'" mat-header-cell *matHeaderCellDef> </th>
+      <td [style.width]="'3%'" mat-cell *matCellDef="let case">
+        <button mat-icon-button [routerLink]='["/case","edit",case.id]'>
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="Temat">
-      <th [style.width]="'30%'" mat-header-cell *matHeaderCellDef> Temat </th>
-      <td [style.width]="'30%'" mat-cell *matCellDef="let case"> {{case.name}} </td>
+      <th [style.width]="'28%'" mat-header-cell *matHeaderCellDef> Temat </th>
+      <td [style.width]="'28%'" mat-cell *matCellDef="let case"> {{case.name}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Aplikacja">

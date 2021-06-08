@@ -39,4 +39,19 @@ export class ApiService {
 
     })
   }
+
+  async getEntry(module_name: string, id: string): Promise<any> {
+    return await $.post(this.url, {
+      method: "get_entry",
+      input_type: "JSON",
+      response_type: "JSON",
+      rest_data: JSON.stringify({
+        session: await this.loggingSv.session,
+        module_name,
+        id
+      })
+
+    })
+  }
+
 }

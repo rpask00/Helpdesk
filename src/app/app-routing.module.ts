@@ -19,6 +19,11 @@ const routes: Routes = [
     component: CasesFormComponent
   },
   {
+    path: "case/edit/:id",
+    canActivate: [IsLoggedInGuard],
+    component: CasesFormComponent
+  },
+  {
     path: "login",
     component: LoginPanelComponent,
     canActivate: [IsloggedoutGuard],
