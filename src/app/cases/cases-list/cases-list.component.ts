@@ -13,10 +13,24 @@ export class CasesListComponent implements OnInit {
 
 
   cases = new MatTableDataSource<Case>([])
-  displayedColumns: string[] = ['check', 'Numer','Edit', 'Temat', 'Aplikacja', 'Status', 'Ważnść',
+  displayedColumns: string[] = ['check', 'Numer', 'Edit', 'Temat', 'Aplikacja', 'Status', 'Ważnść',
     'Rodzaj', 'Data wprowadzenia', 'Gwarantowany termin', 'Przydzielona do'];
 
   checkedList = new Set<string>()
+  types: any = {
+    "Major": "Serwisowanie (błąd, awaria)",
+    "Modification": "Zmiana (CR)",
+    "Training": "Wsparcie i administrowanie",
+  }
+
+  statuses: any = {
+    "Closed_Completed": "Zrealizowane",
+    "Open_New": "Nowy",
+    "Closed_Canceled": "Anulowane",
+    "Open_Assigned": "W realizacji",
+    "Open_Frozen": "Zamrożone",
+    "Closed_NonAction": "Zaniechane",
+  }
 
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
@@ -30,13 +44,7 @@ export class CasesListComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    let casesData = await this.apiSv.getModuleEntries("Cases")
-    this.cases.data = casesData.entry_list.map((cl: any) => cl.name_value_list).map((c: any) => {
-      let newcase: any = {}
-      for (let key in c)
-        newcase[key] = c[key].value
-      return newcase
-    });
+    this.cases.data = this.apiSv.entryListToValueList(await this.apiSv.getModuleEntries("Cases"))
   }
 
   formDate(d: string): string {

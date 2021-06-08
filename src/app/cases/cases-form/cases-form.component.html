@@ -1,60 +1,85 @@
-<form action="">
-
-    <h1>Dane podstawowe</h1>
-    <div class="row">
-      <div class="col">
-        <mat-form-field class="example-full-width">
-          <mat-label>Numer</mat-label>
-          <input matInput type="text">
-        </mat-form-field>
-  
-        <mat-form-field class="example-full-width">
-          <mat-label>Rodzaj</mat-label>
-          <input matInput type="text">
-        </mat-form-field>
-  
-        <mat-form-field class="example-full-width">
-          <mat-label>Stan</mat-label>
-          <input matInput type="text">
-        </mat-form-field>
-  
-        <mat-form-field class="example-full-width">
-          <mat-label>Zgłaszający</mat-label>
-          <input matInput type="text">
-        </mat-form-field>
-  
-        <mat-form-field class="example-full-width">
-          <mat-label>Data zamknięcia</mat-label>
-          <input matInput type="text">
-        </mat-form-field>
-  
-      </div>
-  
-      <div class="col">
-        <mat-form-field class="example-full-width">
-          <mat-label>Status</mat-label>
-          <input matInput type="text">
-        </mat-form-field>
-  
-        <mat-form-field class="example-full-width">
-          <mat-label>Przydzielone do</mat-label>
-          <input matInput type="text">
-        </mat-form-field>
-      </div>
-    </div>
-  
-    <h1>Dane szczegółowe</h1>
+<form [formGroup]=form>
+  <h1>Dane podstawowe</h1>
+  <div class="row">
     <div class="col">
-      <mat-form-field class="example-full-width">
-        <mat-label>Temat</mat-label>
-        <input matInput type="text">
+      <mat-form-field>
+        <mat-label>Numer</mat-label>
+        <input matInput disabled=true [value]="case.case_number">
       </mat-form-field>
-  
-      <mat-form-field class="example-full-width">
-        <mat-label>Opis</mat-label>
-        <input matInput type="text">
+
+      <mat-form-field appearance="fill">
+        <mat-label>Rodzaj</mat-label>
+        <mat-select formControlName="type">
+          <mat-option value=""></mat-option>
+          <mat-option value="Major">Serwisowanie (błąd, awaria)</mat-option>
+          <mat-option value="Modification">Zmiana (CR)</mat-option>
+          <mat-option value="Training">Wsparcie i administrowanie</mat-option>
+        </mat-select>
       </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Stan</mat-label>
+        <mat-select formControlName="state">
+          <mat-option value="Open">Otwarty</mat-option>
+          <mat-option value="Closed">Zamknięty</mat-option>
+          <mat-option value="">Ponownie otwarty</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Zgłaszający</mat-label>
+        <mat-select *ngIf="users" formControlName="contact_created_by_id">
+          <mat-option *ngFor="let user of users" [value]="user.id">{{user.full_name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Data zamknięcia</mat-label>
+        <input formControlName="data_zamkniecia_c" matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
     </div>
-  
-  </form>
-  
+
+    <div class="col">
+      <mat-form-field>
+        <mat-label>Nazwa aplikacji</mat-label>
+        <input matInput type="text" value="SID" disabled=true>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status">
+          <mat-option *ngFor="let state of states" [value]=state.key>{{state.value}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="fill">
+        <mat-label>Przydzielone do</mat-label>
+        <mat-select *ngIf="users" formControlName="assigned_user_id">
+          <mat-option *ngFor="let user of users" [value]="user.id">{{user.full_name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+  </div>
+
+  <h1>Dane szczegółowe</h1>
+  <div class="col">
+    <mat-form-field>
+      <mat-label>Temat</mat-label>
+      <textarea formControlName="name" matInput cdkAutosizeMinRows="2" cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Opis</mat-label>
+      <textarea formControlName="description" matInput cdkAutosizeMinRows="3" cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize"></textarea>
+    </mat-form-field>
+  </div>
+
+  <button (click)="submit()"  mat-raised-button color="primary">Zatwierdź</button>
+</form>

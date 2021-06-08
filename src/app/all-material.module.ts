@@ -30,6 +30,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -38,8 +39,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatCheckboxModule,
     MatButtonModule,
     MatInputModule,
-    MatAutocompleteModule,
     MatDatepickerModule,
+    MatNativeDateModule,
+    MatAutocompleteModule,
     MatFormFieldModule,
     MatRadioModule,
     MatSelectModule,

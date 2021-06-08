@@ -10,7 +10,7 @@
     </ng-container>
 
     <ng-container matColumnDef="Numer">
-      <th [style.width]="'2%'" mat-header-cell *matHeaderCellDef> Numer </th>
+      <th [style.width]="'2%'" mat-header-cell *matHeaderCellDef> # </th>
       <td [style.width]="'2%'" mat-cell *matCellDef="let case"> {{case.case_number}} </td>
     </ng-container>
 
@@ -35,7 +35,7 @@
 
     <ng-container matColumnDef="Status">
       <th [style.width]="'10%'" mat-header-cell *matHeaderCellDef> Status </th>
-      <td [style.width]="'10%'" mat-cell *matCellDef="let case"> {{case.status}} </td>
+      <td [style.width]="'10%'" mat-cell *matCellDef="let case"> {{statuses[case.status]}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Ważnść">
@@ -46,7 +46,7 @@
 
     <ng-container matColumnDef="Rodzaj">
       <th [style.width]="'10%'" mat-header-cell *matHeaderCellDef> Rodzaj </th>
-      <td [style.width]="'10%'" mat-cell *matCellDef="let case"> {{case.Rodzaj}} </td>
+      <td [style.width]="'10%'" mat-cell *matCellDef="let case"> {{types[case.type]}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Data wprowadzenia">

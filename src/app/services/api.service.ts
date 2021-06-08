@@ -54,4 +54,15 @@ export class ApiService {
     })
   }
 
+  entryListToValueList(list: any): any[] {
+    return list.entry_list.map((cl: any) => cl.name_value_list).map((c: any) => {
+      let newcase: any = {}
+      for (let key in c)
+        newcase[key] = c[key].value
+      return newcase
+    });
+  }
+
+
+
 }
