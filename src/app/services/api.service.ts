@@ -40,7 +40,7 @@ export class ApiService {
     })
   }
 
-  async getEntry(module_name: string, id: string): Promise<any> {
+  async getEntry(module_name: string, id: string, select_fields?: string[]): Promise<any> {
     return await $.post(this.url, {
       method: "get_entry",
       input_type: "JSON",
@@ -48,9 +48,30 @@ export class ApiService {
       rest_data: JSON.stringify({
         session: await this.loggingSv.session,
         module_name,
-        id
+        id,
+        select_fields
       })
 
+    })
+  }
+
+  async setEntry(module_name: string, name_value_list: any[], id?: string): Promise<any> {
+    let payload: any = {
+      session: await this.loggingSv.session,
+      module_name,
+      name_value_list
+    }
+
+    if (id)
+      payload.id = id
+
+    console.log(payload);
+
+    return await $.post(this.url, {
+      method: "set_entry",
+      input_type: "JSON",
+      response_type: "JSON",
+      rest_data: JSON.stringify(payload)
     })
   }
 
@@ -61,6 +82,15 @@ export class ApiService {
         newcase[key] = c[key].value
       return newcase
     });
+  }
+
+  objToNameValueList(obj: any) {
+    let nameValueList = []
+    for (let key in obj) {
+      nameValueList.push({ name: key, value: obj[key] })
+    }
+
+    return nameValueList
   }
 
 

@@ -10,7 +10,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~12.0.2",
+    "@angular/animations": "^12.0.3",
     "@angular/cdk": "^12.0.2",
     "@angular/common": "~12.0.2",
     "@angular/compiler": "~12.0.2",
@@ -29,6 +29,7 @@
     "js-md5": "^0.7.3",
     "md5": "^2.3.0",
     "moment": "^2.29.1",
+    "ngx-toastr": "^14.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.4"
