@@ -1,0 +1,76 @@
+<form [formGroup]=form>
+
+  <mat-form-field > 
+    <mat-label>Numer</mat-label>
+    <input matInput formControlName="case_number">
+  </mat-form-field>
+
+  <mat-form-field class="mid">
+    <mat-label>Temat</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Nazwa aplikacji</mat-label>
+    <input matInput formControlName="account_name">
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Rodzaj</mat-label>
+    <mat-select formControlName="type">
+      <mat-option value=""></mat-option>
+      <mat-option value="Major">Serwisowanie (błąd, awaria)</mat-option>
+      <mat-option value="Modification">Zmiana (CR)</mat-option>
+      <mat-option value="Training">Wsparcie i administrowanie</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field class="mid" appearance="fill">
+    <mat-label>Stan</mat-label>
+    <mat-select formControlName="state">
+      <mat-option value=""></mat-option>
+      <mat-option value="Open">Otwarty</mat-option>
+      <mat-option value="Closed">Zamknięty</mat-option>
+      <mat-option value="">Ponownie otwarty</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Status</mat-label>
+    <mat-select formControlName="status">
+      <mat-option value=""></mat-option>
+      <mat-option value="Open_New">Nowy</mat-option>
+      <mat-option value="Open_Assigned">W realizacji</mat-option>
+      <mat-option value="Open_Frozen">Zamrożone</mat-option>
+      <mat-option value="Closed_Completed">Zrealizowane</mat-option>
+      <mat-option value="Closed_Canceled">Anulowane</mat-option>
+      <mat-option value="Closed_NonAction">Zaniechane</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Przydziel do</mat-label>
+    <mat-select formControlName="assigned_user_id">
+      <mat-option value=""></mat-option>
+      <mat-option *ngFor="let user of users" [value]="user.id">{{user.full_name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field class="mid" appearance="fill">
+    <mat-label>Priorytet</mat-label>
+    <mat-select formControlName="waznosc_c">  
+      <mat-option value=""></mat-option>
+      <mat-option value="krytyczna">Krytyczna</mat-option>
+      <mat-option value="niekrytyczna">Niekrytyczna</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+
+
+</form>

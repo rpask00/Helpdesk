@@ -65,8 +65,6 @@ export class ApiService {
     if (id)
       payload.id = id
 
-    console.log(payload);
-
     return await $.post(this.url, {
       method: "set_entry",
       input_type: "JSON",

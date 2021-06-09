@@ -12,13 +12,15 @@ import { CasesListComponent } from './cases/cases-list/cases-list.component';
 import { CasesFormComponent } from './cases/cases-form/cases-form.component';
 import { MatCheckboxDefaultOptions, MAT_CHECKBOX_DEFAULT_OPTIONS } from '@angular/material/checkbox';
 import { ToastrModule } from 'ngx-toastr';
+import { FilterPanelComponent } from './cases/cases-list/filter-panel/filter-panel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPanelComponent,
     CasesListComponent,
-    CasesFormComponent
+    CasesFormComponent,
+    FilterPanelComponent
   ],
   imports: [
     AllMaterialModule,

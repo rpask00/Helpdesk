@@ -61,6 +61,7 @@ export class CasesFormComponent implements OnInit, OnDestroy {
       let select_fields = this.adminControlNames.concat(this.controlNames).concat(['case_number'])
       this.case = this.apiSv.entryListToValueList(await this.apiSv.getEntry("Cases", this.id, select_fields))[0]
     }
+
     this.users = this.apiSv.entryListToValueList(await this.apiSv.getModuleEntries("Users"))
 
     for (let key of this.adminControlNames.concat(this.controlNames))
@@ -96,11 +97,14 @@ export class CasesFormComponent implements OnInit, OnDestroy {
 
     this.case.contact_created_by_name = createUser.name
     this.case.assigned_user_name = assignedUser.name
+    this.case.account_name = 'SID'
 
     let res = await this.apiSv.setEntry("Cases", this.apiSv.objToNameValueList(this.case), this.id)
     if (res.id)
       this.toastr.success((this.id ? "Modyfikowanie" : "Dodawanie") + " zgłoszenia powiodło się")
   }
+
+
 
   clearString(str: string) {
     return str ? $.parseHTML($('<textarea />').html(str).text())[0].textContent : str

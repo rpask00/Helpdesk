@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from './../../services/api.service';
-import { Case } from './../../models/case';
+import { Case, CaseFilters } from './../../models/case';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 
@@ -13,6 +13,7 @@ export class CasesListComponent implements OnInit {
 
 
   cases = new MatTableDataSource<Case>([])
+  allCases: Case[] = []
   displayedColumns: string[] = ['check', 'Numer', 'Edit', 'Temat', 'Aplikacja', 'Status', 'Ważnść',
     'Rodzaj', 'Data wprowadzenia', 'Gwarantowany termin', 'Przydzielona do'];
 
@@ -44,7 +45,8 @@ export class CasesListComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.cases.data = this.apiSv.entryListToValueList(await this.apiSv.getModuleEntries("Cases"))
+    this.allCases = this.apiSv.entryListToValueList(await this.apiSv.getModuleEntries("Cases"))
+    this.cases.data = this.allCases
   }
 
   formDate(d: string): string {
@@ -56,5 +58,18 @@ export class CasesListComponent implements OnInit {
 
   check(id: string): void {
     this.checkedList.has(id) ? this.checkedList.delete(id) : this.checkedList.add(id)
+  }
+
+  filterCases(filters: any) {
+    let cases = this.allCases
+    cases = cases.filter((c: any) => {
+
+      for (let filter in filters)
+        if (c[filter].toLowerCase().indexOf(filters[filter].toLowerCase()) == -1) return false
+
+      return true
+    })
+
+    this.cases.data = cases
   }
 }
