@@ -29,7 +29,13 @@ export class FilterPanelComponent implements OnInit, OnDestroy {
       waznosc_c: new FormControl(''),
     })
 
-    this.sub = this.form.valueChanges.subscribe(values => this.onFilterValueChange.emit(values))
+    this.sub = this.form.valueChanges.subscribe(values => {
+      let arr = Object.keys(values).map(key => {
+        let partialMatch = (key == 'case_number' || key == 'name' || key == 'account_name')
+        return { key, value: values[key], match: partialMatch ? "partial" : "full" }
+      })
+      this.onFilterValueChange.emit(arr)
+    })
 
   }
 

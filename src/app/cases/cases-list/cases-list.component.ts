@@ -64,12 +64,20 @@ export class CasesListComponent implements OnInit {
     let cases = this.allCases
     cases = cases.filter((c: any) => {
 
-      for (let filter in filters)
-        if (c[filter].toLowerCase().indexOf(filters[filter].toLowerCase()) == -1) return false
+      for (let filter of filters) {
+        if (!filter.value)
+          continue  
+
+        if (filter.match == "full" && c[filter.key].toLowerCase() != filters.value.toLowerCase())
+          return false
+
+        if (filter.match == "partial" && c[filter.key].toLowerCase().indexOf(filters.value.toLowerCase()) == -1)
+          return false
+      }
 
       return true
     })
 
-    this.cases.data = cases
+    // this.cases.data = cases
   }
 }

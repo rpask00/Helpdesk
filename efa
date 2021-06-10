@@ -1,0 +1,77 @@
+[33mcommit 339be4e30600294bc4e585a8623c7ff4aa4f5172[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: rpask00 <rp.261000@gmail.com>
+Date:   Wed Jun 9 22:41:24 2021 +0200
+
+    implementig filtering panel
+
+[33mcommit 8254fe3b3b6aa4c9268ea7b27d05aa03e54d1ece[m
+Author: rpask00 <rp.261000@gmail.com>
+Date:   Wed Jun 9 16:25:26 2021 +0200
+
+    toastr
+
+[33mcommit e4785344fa287f8d08a5ee7dc4332a581ab2c2e9[m
+Author: rpask00 <rp.261000@gmail.com>
+Date:   Tue Jun 8 22:26:53 2021 +0200
+
+    admin fields protection
+
+[33mcommit 969f3488b5a3c9bbc7e479b25708d5da449476f7[m
+Author: rpask00 <rp.261000@gmail.com>
+Date:   Tue Jun 8 17:38:17 2021 +0200
+
+    form populating ready
+
+[33mcommit 7ccc7a54b1dd9d2dc3c208048386bd532c00c080[m
+Author: rpask00 <rp.261000@gmail.com>
+Date:   Tue Jun 8 12:23:45 2021 +0200
+
+    fetching entry object in case form
+
+[33mcommit 4c7e27bd2d611f65a64781471804d67aafd43c34[m
+Author: rpask00 <rp.261000@gmail.com>
+Date:   Mon Jun 7 18:32:31 2021 +0200
+
+    implementing pagination
+
+[33mcommit 63b1b5b62f0792c80a3706837b73d7ef9f9363cc[m
+Author: rpask00 <rp.261000@gmail.com>
+Date:   Sun Jun 6 17:00:55 2021 +0200
+
+    implementing logging out
+
+[33mcommit bbe4b3d89e32aea8127dc022b6d9f2a0ccb4cca2[m
+Author: rpask00 <rp.261000@gmail.com>
+Date:   Fri Jun 4 22:31:11 2021 +0200
+
+    fetching list of cases
+
+[33mcommit 7541f839aeaf9881ac446a03a07d5e4a72a95d66[m
+Author: rpask00 <rp.261000@gmail.com>
+Date:   Thu Jun 3 15:21:26 2021 +0200
+
+    setting user session ssid
+
+[33mcommit b7e021bc1dfcf19e57582dd24332639455105dec[m
+Author: rpask00 <rp.261000@gmail.com>
+Date:   Wed Jun 2 23:20:36 2021 +0200
+
+    md5 hashing
+
+[33mcommit 864dcfe51c5503f37acd1de1cdbf0466e7482789[m
+Author: rpask00 <rp.261000@gmail.com>
+Date:   Wed Jun 2 14:47:37 2021 +0200
+
+    setign theme
+
+[33mcommit eb5b945b972c02a2f8bb87efde07fdc908e0c1af[m
+Author: rpask00 <rp.261000@gmail.com>
+Date:   Tue Jun 1 23:08:31 2021 +0200
+
+    creating apllciation form
+
+[33mcommit 264f3fd64bb479d5dde4e50ac69e41e47fe0a030[m
+Author: rpask00 <rp.261000@gmail.com>
+Date:   Tue Jun 1 17:49:15 2021 +0200
+
+    first commit
