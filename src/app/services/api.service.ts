@@ -9,7 +9,7 @@ import { LoggingService } from './logging.service';
 })
 export class ApiService {
 
-  url = "http://hdropczyce.e-bi.pl/service/v4_1/rest.php"
+  url = "https://hdropczyce.e-bi.pl/service/v4_1/rest.php"
 
   constructor(
     private http: HttpClient,
