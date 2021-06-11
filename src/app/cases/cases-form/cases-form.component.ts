@@ -98,8 +98,10 @@ export class CasesFormComponent implements OnInit, OnDestroy {
     this.case.contact_created_by_name = createUser.name
     this.case.assigned_user_name = assignedUser.name
     this.case.account_name = 'SID'
+    this.case.account_id = '2f37a045-d74d-c4b1-651e-57c51ea4018b'
 
     let res = await this.apiSv.setEntry("Cases", this.apiSv.objToNameValueList(this.case), this.id)
+    console.log(res);
     if (res.id)
       this.toastr.success((this.id ? "Modyfikowanie" : "Dodawanie") + " zgłoszenia powiodło się")
   }

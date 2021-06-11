@@ -1,0 +1,20 @@
+<div class="comments-box">
+
+  <div class="comment" *ngFor="let comment of comments">
+    <div class="info">
+      <div class="name">{{comment.name}} </div>
+      <div class="date">{{comment.date}}</div>
+    </div>
+    <div class="content">
+      {{comment.content}}
+    </div>
+  </div>
+
+  <mat-form-field class="new-comment-content">
+    <mat-label>napisz komentarz..</mat-label>
+    <textarea [formControl]='newcomment' matInput></textarea>
+  </mat-form-field>
+
+  <button (click)='addComment()' mat-raised-button color="primary"> Dodaj komentarz</button>
+
+</div>

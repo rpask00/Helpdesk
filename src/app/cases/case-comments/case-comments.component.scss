@@ -1,0 +1,42 @@
+.comments-box {
+    width: 70vw;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 30px;
+
+    .comment {
+        padding: 10px;
+        box-sizing: border-box;
+        margin-top: 20px;
+
+        .info {
+            display: flex;
+            border-bottom: 1px dashed var(--accent);
+            width: 100%;
+            margin-bottom: 10px;
+
+            .name {
+                font-weight: 500;
+            }
+
+            .date {
+                margin-left: 20px;
+                color: gray;
+            }
+
+        }
+
+        border:2px solid var(--accent);
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .new-comment-content {
+        width: 100%;
+        margin-top: 20px;
+
+        textarea {
+            height: 100px;
+        }
+    }
+}

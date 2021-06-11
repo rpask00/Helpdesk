@@ -11,6 +11,7 @@ export class Case {
     state: string = ''
     contact_created_by_name: string = ''
     assigned_user_name: string = ''
+    account_id: string = ''
 }
 
 

@@ -34,11 +34,11 @@
       </mat-form-field>
 
       <mat-form-field appearance="fill">
-         <mat-label>Data zamknięcia</mat-label>
+        <mat-label>Data zamknięcia</mat-label>
         <input formControlName="data_zamkniecia_c" matInput [matDatepicker]="picker">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field> 
+      </mat-form-field>
     </div>
 
     <div class="col">
@@ -83,3 +83,5 @@
   <button (click)="submit()" mat-raised-button color="primary">Zatwierdź</button>
 
 </form>
+
+<app-case-comments></app-case-comments>
