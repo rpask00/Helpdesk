@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewChecked } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -6,14 +7,16 @@ import { FormControl } from '@angular/forms';
   templateUrl: './case-comments.component.html',
   styleUrls: ['./case-comments.component.scss']
 })
-export class CaseCommentsComponent implements OnInit {
+export class CaseCommentsComponent implements OnInit, AfterViewChecked {
 
   @Input('caseId') caseId: string = ''
-  newcomment: FormControl
+
+  newcomment: string = ""
   comments: { name: string, content: string, date: string }[] = []
-  constructor() {
-    this.newcomment = new FormControl('')
-  }
+  images: Element[] = []
+  @ViewChild('commentBox') commentBox!: ElementRef<HTMLDivElement>
+
+  constructor() { }
 
   ngOnInit(): void {
   }
@@ -21,11 +24,18 @@ export class CaseCommentsComponent implements OnInit {
   addComment() {
     this.comments.push({
       name: "324234",
-      content: "ASfasefas",
+      content: this.newcomment,
       date: (new Date()).toLocaleString()
     })
-
-    this.newcomment.reset()
+    this.newcomment = ""
   }
 
+
+  ngAfterViewChecked() {
+    let newimages = this.commentBox?.nativeElement.querySelectorAll('.comment-content img')
+    if (newimages && (newimages.length != this.images.length)) {
+      this.images = Array.from(newimages)
+      this.images.forEach(img => img.addEventListener('click', () => console.log('object')))
+    }
+  }
 }

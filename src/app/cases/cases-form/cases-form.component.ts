@@ -15,12 +15,14 @@ import { ToastrService } from 'ngx-toastr';
 export class CasesFormComponent implements OnInit, OnDestroy {
 
 
-  id: string | undefined
-  case: Case = new Case()
-  users: any[] = []
-  states: { key: string, value: string }[] = []
-  form = new FormGroup({})
-  subs: Subscription[] = []
+  public id: string | undefined
+  public case: Case = new Case()
+  public users: any[] = []
+  public states: { key: string, value: string }[] = []
+  public form = new FormGroup({})
+  public subs: Subscription[] = []
+  public ckeditorContent: any
+
 
   private statuses: any = {
     "Open": [

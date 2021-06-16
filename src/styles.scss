@@ -9,6 +9,14 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.comment-content {
+    // width: 70vw;
+
+    img {
+        width: 100%;
+    }
+}
+
 body {
     --primary: #ff0056;
     --primary-lighter: #ffb3cc;

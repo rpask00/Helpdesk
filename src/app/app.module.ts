@@ -14,6 +14,7 @@ import { MatCheckboxDefaultOptions, MAT_CHECKBOX_DEFAULT_OPTIONS } from '@angula
 import { ToastrModule } from 'ngx-toastr';
 import { FilterPanelComponent } from './cases/cases-list/filter-panel/filter-panel.component';
 import { CaseCommentsComponent } from './cases/case-comments/case-comments.component';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 @NgModule({
   declarations: [
@@ -26,13 +27,15 @@ import { CaseCommentsComponent } from './cases/case-comments/case-comments.compo
   ],
   imports: [
     AllMaterialModule,
-    BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
     ToastrModule.forRoot(),
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
+
   ],
   providers: [
     { provide: MAT_CHECKBOX_DEFAULT_OPTIONS, useValue: { clickAction: 'noop' } as MatCheckboxDefaultOptions }

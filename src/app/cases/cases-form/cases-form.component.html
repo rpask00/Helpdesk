@@ -73,15 +73,18 @@
         #autosize="cdkTextareaAutosize"></textarea>
     </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Opis</mat-label>
+    <label for="opis">Opis</label>
+    <div [froalaEditor] id="opis" formControlName="description"></div>
+    <!-- <mat-form-field>
+      <mat-label></mat-label>
       <textarea formControlName="description" matInput cdkAutosizeMinRows="3" cdkTextareaAutosize
         #autosize="cdkTextareaAutosize"></textarea>
-    </mat-form-field>
+    </mat-form-field> -->
   </div>
 
-  <button (click)="submit()" mat-raised-button color="primary">Zatwierdź</button>
+
+  <h1>Komentarze</h1>
+
+  <app-case-comments *ngIf="id"></app-case-comments>
 
 </form>
-
-<app-case-comments></app-case-comments>

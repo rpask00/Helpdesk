@@ -9,7 +9,7 @@
         box-sizing: border-box;
         margin-top: 20px;
 
-        .info {
+        .comment-info {
             display: flex;
             border-bottom: 1px dashed var(--accent);
             width: 100%;
@@ -26,6 +26,7 @@
 
         }
 
+
         border:2px solid var(--accent);
         display: flex;
         flex-wrap: wrap;
@@ -38,5 +39,18 @@
         textarea {
             height: 100px;
         }
+    }
+
+
+    label {
+        margin-left: 5px;
+        margin-bottom: 5px;
+        font-weight: 500;
+        font-size: 20px;
+        color: rgba(0, 0, 0, 0.356);
+    }
+
+    button {
+        margin-top: 30px;
     }
 }
