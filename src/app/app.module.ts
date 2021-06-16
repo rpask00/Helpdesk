@@ -15,6 +15,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { FilterPanelComponent } from './cases/cases-list/filter-panel/filter-panel.component';
 import { CaseCommentsComponent } from './cases/case-comments/case-comments.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { ImageDialogComponent } from './cases/case-comments/image-dialog/image-dialog.component';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -23,8 +25,9 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     CasesListComponent,
     CasesFormComponent,
     FilterPanelComponent,
-    CaseCommentsComponent
-  ],
+    CaseCommentsComponent,
+    ImageDialogComponent
+  ], 
   imports: [
     AllMaterialModule,
     AppRoutingModule,
@@ -38,7 +41,9 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
   ],
   providers: [
-    { provide: MAT_CHECKBOX_DEFAULT_OPTIONS, useValue: { clickAction: 'noop' } as MatCheckboxDefaultOptions }
+    { provide: MAT_CHECKBOX_DEFAULT_OPTIONS, useValue: { clickAction: 'noop' } as MatCheckboxDefaultOptions },
+    // { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }
+
   ],
   bootstrap: [AppComponent]
 })
