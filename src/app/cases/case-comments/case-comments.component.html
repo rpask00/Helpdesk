@@ -10,7 +10,8 @@
 
   <div class="new-comment-content">
     <label for="comment">Napisz komentarz</label>
-    <div [froalaEditor] id="comment" [(froalaModel)]='newcomment'></div>
+    <angular-editor [placeholder]="'Wprowadź komentarz..'" [(ngModel)]="newcomment"></angular-editor>
+    <!-- <div [froalaEditor] id="comment" [(froalaModel)]='newcomment'></div> -->
   </div>
 
   <button (click)='addComment()' mat-raised-button color="primary">Dodaj komentarz</button>

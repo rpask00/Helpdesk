@@ -1,14 +1,17 @@
 <mat-toolbar color="primary">
-  <button mat-button (click)="logout()" *ngIf="session$ | async as session;else logged">Wyloguj</button>
+  <div class="btns">
+    <button mat-button (click)="logout()" *ngIf="session$ | async as session;else logged">Wyloguj</button>
 
-  <ng-template #logged>
-    <button mat-button [routerLink]="['login']">Zaloguj</button>
-  </ng-template>
+    <ng-template #logged>
+      <button mat-button [routerLink]="['login']">Zaloguj</button>
+    </ng-template>
 
 
-  <button *ngIf="session$ | async as session"  mat-button [routerLink]=" ['cases','list']">Lista zgłoszeń</button>
-  <button *ngIf="session$ | async as session"  mat-button [routerLink]="['case','new']">Nowe zgłoszenie</button>
+    <button *ngIf="session$ | async as session" mat-button [routerLink]=" ['cases','list']">Lista zgłoszeń</button>
+    <button *ngIf="session$ | async as session" mat-button [routerLink]="['case','new']">Nowe zgłoszenie</button>
 
+  </div>
+  <img src="../assets/logo_ropczyce.png-removebg-preview.png" alt="magnezyty ropczyce" class="logo">
 
 </mat-toolbar>
 

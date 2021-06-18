@@ -1,4 +1,16 @@
+
+mat-toolbar {
+    display: flex;
+    height: 100px;
+    font-weight: 900;
+    justify-content: space-evenly;
+}
+
 a {
     text-decoration: none;
     color: black;
+}
+
+.logo {
+    height: 100%;
 }

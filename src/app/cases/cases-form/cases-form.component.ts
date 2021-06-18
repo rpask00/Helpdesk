@@ -6,6 +6,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as $ from "jquery";
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-cases-form',
@@ -22,6 +23,10 @@ export class CasesFormComponent implements OnInit, OnDestroy {
   public form = new FormGroup({})
   public subs: Subscription[] = []
   public ckeditorContent: any
+  public cfg: AngularEditorConfig = {
+    editable: true,
+    width: '70vw',
+  }
 
 
   private statuses: any = {
@@ -49,22 +54,28 @@ export class CasesFormComponent implements OnInit, OnDestroy {
   ) {
     let controlOptions: any = { updateOn: "blur", validators: [Validators.required] }
 
-    for (let adminControlName of this.adminControlNames)
-      this.form.addControl(adminControlName, new FormControl({ value: "", disabled: !this.isAdmin }, controlOptions))
+    for (let adminControlName of this.adminControlNames) {
+      let defaulvalue = (this.case as any)[adminControlName]
+      this.form.addControl(adminControlName, new FormControl({ value: defaulvalue, disabled: !this.isAdmin }, controlOptions))
+    }
 
-    for (let controlName of this.controlNames)
-      this.form.addControl(controlName, new FormControl("", controlOptions))
+    for (let controlName of this.controlNames) {
+      let defaulvalue = (this.case as any)[controlName]
+      this.form.addControl(controlName, new FormControl(defaulvalue, controlOptions))
+    }
   }
 
   async ngOnInit() {
+    this.users = this.apiSv.entryListToValueList(await this.apiSv.getModuleEntries("Users"))
+
     this.id = this.route.snapshot.params['id']
 
-    if (this.id) {
-      let select_fields = this.adminControlNames.concat(this.controlNames).concat(['case_number'])
-      this.case = this.apiSv.entryListToValueList(await this.apiSv.getEntry("Cases", this.id, select_fields))[0]
-    }
+    if (!this.id)
+      return
 
-    this.users = this.apiSv.entryListToValueList(await this.apiSv.getModuleEntries("Users"))
+    let select_fields = this.adminControlNames.concat(this.controlNames).concat(['case_number'])
+    this.case = this.apiSv.entryListToValueList(await this.apiSv.getEntry("Cases", this.id, select_fields))[0]
+
 
     for (let key of this.adminControlNames.concat(this.controlNames))
       this.form.patchValue({ [key]: (this.case as any)[key] })

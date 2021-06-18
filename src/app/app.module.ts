@@ -17,6 +17,7 @@ import { CaseCommentsComponent } from './cases/case-comments/case-comments.compo
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { ImageDialogComponent } from './cases/case-comments/image-dialog/image-dialog.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
     FilterPanelComponent,
     CaseCommentsComponent,
     ImageDialogComponent
-  ], 
+  ],
   imports: [
     AllMaterialModule,
     AppRoutingModule,
@@ -35,6 +36,7 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    AngularEditorModule,
     ToastrModule.forRoot(),
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),

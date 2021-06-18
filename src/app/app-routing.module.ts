@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: "full",
-    redirectTo: 'cases/list'
+    redirectTo: 'login'
   },
   {
     path: "case/new",
