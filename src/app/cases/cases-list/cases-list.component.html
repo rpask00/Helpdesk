@@ -27,7 +27,11 @@
 
     <ng-container matColumnDef="Temat">
       <th [style.width]="'28%'" mat-header-cell *matHeaderCellDef> Temat </th>
-      <td [style.width]="'28%'" mat-cell *matCellDef="let case"> {{case.name}} </td>
+      <td [style.width]="'28%'" mat-cell *matCellDef="let case">
+
+        <a mat-button [routerLink]="['/case','view',case.id]">{{case.name}}</a>
+
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="Aplikacja">

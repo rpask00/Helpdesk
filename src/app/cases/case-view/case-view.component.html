@@ -1,0 +1,64 @@
+<div class="case-view-container">
+  <h1>Dane podstawowe</h1>
+  <div class="row">
+    <div class="col">
+      <div class="info-box">
+        <label>Numer</label>
+        <span>{{case.case_number}}</span>
+      </div>
+
+      <div class="info-box">
+        <label>Rodzaj</label>
+        <span>{{types[case.type]}}</span>
+      </div>
+      <div class="info-box">
+        <label>Stan</label>
+        <span>{{states[case.state]}}</span>
+      </div>
+      <div class="info-box">
+        <label>Zgłaszający</label>
+        <span>{{case.contact_created_by_name}}</span>
+      </div>
+      <div class="info-box">
+        <label>Data zamknięcia</label>
+        <span>{{case.data_zamkniecia_c}}</span>
+      </div>
+    </div>
+    <div class="col">
+      <div class="info-box">
+        <label>Nazwa aplikacji</label>
+        <span>SID</span>
+      </div>
+      <div class="info-box">
+        <label>Status</label>
+        <span>{{statuses[case.status]}}</span>
+      </div>
+      <div class="info-box">
+        <label>Przydzielone do</label>
+        <span>{{case.assigned_user_name}}</span>
+      </div>
+    </div>
+  </div>
+
+
+  <h1>Dane szczegółowe</h1>
+  <div class="col">
+    <div class="info-box">
+      <label>Temat</label>
+      <span>{{case.name}}</span>
+    </div>
+
+    <div class="info-box">
+      <label>Opis</label>
+      <div class="description-content" [innerHtml]="decodeHtml(case.description)"></div>
+    </div>
+
+
+
+
+  </div>
+  <h1 *ngIf="id">Komentarze</h1>
+  <app-case-comments *ngIf="id"></app-case-comments>
+
+
+</div>

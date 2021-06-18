@@ -18,6 +18,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { ImageDialogComponent } from './cases/case-comments/image-dialog/image-dialog.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { CaseViewComponent } from './cases/case-view/case-view.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     CasesFormComponent,
     FilterPanelComponent,
     CaseCommentsComponent,
-    ImageDialogComponent
+    ImageDialogComponent,
+    CaseViewComponent
   ],
   imports: [
     AllMaterialModule,

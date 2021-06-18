@@ -81,7 +81,7 @@ export class CasesFormComponent implements OnInit, OnDestroy {
       this.form.patchValue({ [key]: (this.case as any)[key] })
 
     this.form.patchValue({ data_zamkniecia_c: new Date(this.case.data_zamkniecia_c) })
-    this.form.patchValue({ description: this.clearString(this.case.description) })
+    // this.form.patchValue({ description: this.clearString(this.case.description) })
 
     this.states = this.statuses[this.form.controls["state"].value]
     let sub = this.form.controls["state"].valueChanges.subscribe(s => {
@@ -121,9 +121,9 @@ export class CasesFormComponent implements OnInit, OnDestroy {
 
 
 
-  clearString(str: string) {
-    return str ? $.parseHTML($('<textarea />').html(str).text())[0].textContent : str
-  }
+  // clearString(str: string) {
+  //   return str ? $.parseHTML($('<textarea />').html(str).text())[0].textContent : str
+  // }
 
   ngOnDestroy() {
     this.subs.forEach(sub => sub.unsubscribe())

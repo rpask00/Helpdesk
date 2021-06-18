@@ -5,13 +5,14 @@ import { CasesListComponent } from './cases/cases-list/cases-list.component';
 import { IsloggedoutGuard } from './guards/isloggedout.guard';
 import { LoginPanelComponent } from './login-panel/login-panel.component';
 import { IsLoggedInGuard } from './guards/is-logged-in.guard';
+import { CaseViewComponent } from './cases/case-view/case-view.component';
 
 const routes: Routes = [
 
   {
     path: '',
     pathMatch: "full",
-    redirectTo: 'login'
+    redirectTo: 'cases/list'
   },
   {
     path: "case/new",
@@ -32,6 +33,11 @@ const routes: Routes = [
     path: "cases/list",
     canActivate: [IsLoggedInGuard],
     component: CasesListComponent
+  },
+  {
+    path: "case/view/:id",
+    canActivate: [IsLoggedInGuard],
+    component: CaseViewComponent
   }
 ];
 
