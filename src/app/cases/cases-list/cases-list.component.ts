@@ -3,6 +3,7 @@ import { ApiService } from './../../services/api.service';
 import { Case, CaseFilters } from './../../models/case';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { nameValueListToObj } from './../../../common/utility';
 
 @Component({
   selector: 'app-cases-list',
@@ -12,7 +13,7 @@ import { MatPaginator } from '@angular/material/paginator';
 export class CasesListComponent implements OnInit {
 
 
-  cases = new MatTableDataSource<Case>([])
+  casesDataSrc = new MatTableDataSource<Case>([])
   allCases: Case[] = []
   displayedColumns: string[] = ['check', 'Numer', 'Edit', 'Temat', 'Aplikacja', 'Status', 'Ważnść',
     'Rodzaj', 'Data wprowadzenia', 'Gwarantowany termin', 'Przydzielona do'];
@@ -41,12 +42,12 @@ export class CasesListComponent implements OnInit {
 
   ngAfterViewInit() {
     if (this.paginator)
-      this.cases.paginator = this.paginator;
+      this.casesDataSrc.paginator = this.paginator;
   }
 
   async ngOnInit(): Promise<void> {
-    this.allCases = this.apiSv.entryListToValueList(await this.apiSv.getModuleEntries("Cases"))
-    this.cases.data = this.allCases
+    this.allCases = nameValueListToObj(await this.apiSv.getModuleEntries("Cases"))
+    this.casesDataSrc.data = this.allCases
   }
 
   formDate(d: string): string {
@@ -81,6 +82,6 @@ export class CasesListComponent implements OnInit {
       return true
     })
 
-    this.cases.data = cases
+    this.casesDataSrc.data = cases
   }
 }

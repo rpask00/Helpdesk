@@ -2,6 +2,8 @@ import { AfterViewChecked } from '@angular/core';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ImageDialogComponent } from './image-dialog/image-dialog.component';
+import { UserService } from './../../services/user.service';
+import { User } from './../../models/user';
 
 @Component({
   selector: 'app-case-comments',
@@ -15,21 +17,22 @@ export class CaseCommentsComponent implements OnInit, AfterViewChecked {
   newcomment: string = ""
   comments: { name: string, content: string, date: string }[] = []
   imagesCount: number = 0
+
   @ViewChild('commentBox') commentBox!: ElementRef<HTMLDivElement>
 
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private userSv: UserService
   ) { }
 
-  ngOnInit(): void {
-  }
+   ngOnInit() {}
 
-  addComment() {
+  async addComment() {
     if (!this.newcomment)
       return
 
     this.comments.push({
-      name: "324234",
+      name: (await this.userSv.user).name,
       content: this.newcomment,
       date: (new Date()).toLocaleString()
     })

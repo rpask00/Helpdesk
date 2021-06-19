@@ -1,7 +1,7 @@
 <app-filter-panel (onFilterValueChange)="filterCases($event)"></app-filter-panel>
 
 <div class="container">
-  <table mat-table [dataSource]="cases" class="mat-elevation-z8">
+  <table mat-table [dataSource]="casesDataSrc" class="mat-elevation-z8">
 
     <ng-container matColumnDef="check">
       <th [style.width]="'2%'" mat-header-cell *matHeaderCellDef> </th>
@@ -12,13 +12,13 @@
     </ng-container>
 
     <ng-container matColumnDef="Numer">
-      <th [style.width]="'2%'" mat-header-cell *matHeaderCellDef> # </th>
-      <td [style.width]="'2%'" mat-cell *matCellDef="let case"> {{case.case_number}} </td>
+      <th [style.width]="'3%'" mat-header-cell *matHeaderCellDef> # </th>
+      <td [style.width]="'3%'" mat-cell *matCellDef="let case"> {{case.case_number}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Edit">
-      <th [style.width]="'3%'" mat-header-cell *matHeaderCellDef> </th>
-      <td [style.width]="'3%'" mat-cell *matCellDef="let case">
+      <th [style.width]="'2%'" mat-header-cell *matHeaderCellDef> </th>
+      <td [style.width]="'2%'" mat-cell *matCellDef="let case">
         <button mat-icon-button [routerLink]='["/case","edit",case.id]'>
           <mat-icon>edit</mat-icon>
         </button>

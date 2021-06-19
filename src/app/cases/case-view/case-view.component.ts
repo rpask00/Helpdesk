@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { Case } from './../../models/case';
 import * as $ from "jquery";
+import { nameValueListToObj, decodeHtml } from './../../../common/utility';
 
 @Component({
   selector: 'app-case-view',
@@ -34,6 +35,9 @@ export class CaseViewComponent implements OnInit {
     "": "Ponownie otwarty",
   }
 
+
+  decodeHtml = decodeHtml
+
   constructor(
     router: Router,
     route: ActivatedRoute,
@@ -46,14 +50,10 @@ export class CaseViewComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.case = this.apiSv.entryListToValueList(await this.apiSv.getEntry("Cases", this.id))[0]
-
-
-    console.log(this.case);
+    this.case = nameValueListToObj(await this.apiSv.getEntry("Cases", this.id))[0]
   }
 
-  decodeHtml(html: string) {
-    return $('<textarea />').html(html).text();
-  }
+
+
 
 }

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from './services/api.service';
-import { LoggingService } from './services/logging.service';
 import { Router } from '@angular/router';
+import * as $ from "jquery";
+import { UserService } from './services/user.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -11,17 +13,17 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
-  session$: Observable<any>
+  user$: Observable<any>
   constructor(
-    private loggingSv: LoggingService,
+    private userSv: UserService,
     private apiSv: ApiService,
     private router: Router,
   ) {
-    this.session$ = this.loggingSv.session$;
+    this.user$ = this.userSv.user$.pipe(map(user => user.id ? user : null));
   }
 
   logout() {
-    this.loggingSv.logout().then(() => this.router.navigate(['login']))
+    this.userSv.logout().then(() => this.router.navigate(['login']))
   }
 
   async ngOnInit() {
@@ -30,5 +32,6 @@ export class AppComponent implements OnInit {
     // console.log(this.apiSv.entryListToValueList(await this.apiSv.getEntry("Cases", "9629be8c-238c-8430-4023-5e315040f314")));
     // console.log(await this.apiSv.getModuleEntries("Users"));
   }
+
 
 }

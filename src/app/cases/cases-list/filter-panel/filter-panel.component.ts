@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/cor
 import { ApiService } from 'src/app/services/api.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { nameValueListToObj } from './../../../../common/utility';
 
 @Component({
   selector: 'app-filter-panel',
@@ -34,7 +35,7 @@ export class FilterPanelComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit() {
-    this.users = this.apiSv.entryListToValueList(await this.apiSv.getModuleEntries("Users"))
+    this.users = nameValueListToObj(await this.apiSv.getModuleEntries("Users"))
   }
 
   ngOnDestroy() {

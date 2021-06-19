@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
-import { LoggingService } from './../services/logging.service';
+import { UserService } from './../services/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,17 +8,17 @@ import { LoggingService } from './../services/logging.service';
 export class IsLoggedInGuard implements CanActivate {
   constructor(
     private router: Router,
-    private loggingSv: LoggingService
+    private userSv: UserService,
+
   ) { }
 
   async canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Promise<boolean> {
+    if (await this.userSv.isLoggedIn())
+      return true
 
-    let session = await this.loggingSv.session
-    if (session == "")
-      this.router.navigateByUrl("/login")
-
-    return !!session
+    this.router.navigateByUrl("/login")
+    return false
   }
 }

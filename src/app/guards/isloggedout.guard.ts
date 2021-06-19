@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { LoggingService } from './../services/logging.service';
+import { UserService } from './../services/user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IsloggedoutGuard implements CanActivate {
   constructor(
-    private loggingSv: LoggingService
+    private userSv: UserService,
   ) { }
 
-  canActivate(
+  async canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Promise<boolean> | boolean {
-    return new Promise((resolve) => this.loggingSv.session.then(s => resolve(s == "")));
+    state: RouterStateSnapshot): Promise<boolean> {
+      return !(await this.userSv.isLoggedIn())
+
   }
 
-  
+
 }
