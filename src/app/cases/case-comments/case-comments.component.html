@@ -10,7 +10,7 @@
 
   <div class="new-comment-content">
     <label for="comment">Napisz komentarz</label>
-    <angular-editor [placeholder]="'Wprowadź komentarz..'" [(ngModel)]="newcomment"></angular-editor>
+    <angular-editor [config]="cfg"  [placeholder]="'Wprowadź komentarz..'" [(ngModel)]="newcomment"></angular-editor>
     <!-- <div [froalaEditor] id="comment" [(froalaModel)]='newcomment'></div> -->
   </div>
 

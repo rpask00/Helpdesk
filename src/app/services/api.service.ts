@@ -42,7 +42,7 @@ export class ApiService {
   }
 
   async getEntry(module_name: string, id: string, select_fields?: string[]): Promise<any> {
-    return await $.post(this.url, {
+    let res = await $.post(this.url, {
       method: "get_entry",
       input_type: "JSON",
       response_type: "JSON",
@@ -54,6 +54,8 @@ export class ApiService {
       })
 
     })
+
+    return res
   }
 
   async setEntry(module_name: string, name_value_list: any[], id?: string): Promise<any> {
@@ -63,8 +65,10 @@ export class ApiService {
       name_value_list
     }
 
+
     if (id)
       payload.id = id
+
 
     return await $.post(this.url, {
       method: "set_entry",

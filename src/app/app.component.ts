@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit() {
+
     // console.log(await this.apiSv.getModules());
     // console.log(this.apiSv.entryListToValueList(await this.apiSv.getEntry("Cases", "d2c0268b-c48f-eadd-270b-60c335745fd9")));
     // console.log(this.apiSv.entryListToValueList(await this.apiSv.getEntry("Cases", "9629be8c-238c-8430-4023-5e315040f314")));

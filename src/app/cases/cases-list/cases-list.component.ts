@@ -1,24 +1,24 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from './../../services/api.service';
 import { Case, CaseFilters } from './../../models/case';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { nameValueListToObj } from './../../../common/utility';
+import { MatSort } from '@angular/material/sort';
+
 
 @Component({
   selector: 'app-cases-list',
   templateUrl: './cases-list.component.html',
   styleUrls: ['./cases-list.component.scss']
 })
-export class CasesListComponent implements OnInit {
 
+export class CasesListComponent implements OnInit, AfterViewInit {
 
   casesDataSrc = new MatTableDataSource<Case>([])
-  allCases: Case[] = []
-  displayedColumns: string[] = ['check', 'Numer', 'Edit', 'Temat', 'Aplikacja', 'Status', 'Ważnść',
-    'Rodzaj', 'Data wprowadzenia', 'Gwarantowany termin', 'Przydzielona do'];
-
+  displayedColumns: string[] = ['check', 'case_number', 'Edit', 'name', 'account_name', 'status', 'waznosc_c', 'type', 'date_entered', 'termin_realizacji_c', 'assigned_user_name'];
   checkedList = new Set<string>()
+  allCases: Case[] = []
   types: any = {
     "Major": "Serwisowanie (błąd, awaria)",
     "Modification": "Zmiana (CR)",
@@ -34,20 +34,24 @@ export class CasesListComponent implements OnInit {
     "Closed_NonAction": "Zaniechane",
   }
 
-  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   constructor(
     private apiSv: ApiService
   ) { }
 
-  ngAfterViewInit() {
-    if (this.paginator)
-      this.casesDataSrc.paginator = this.paginator;
-  }
 
   async ngOnInit(): Promise<void> {
     this.allCases = nameValueListToObj(await this.apiSv.getModuleEntries("Cases"))
     this.casesDataSrc.data = this.allCases
+  }
+
+
+  ngAfterViewInit() {
+    this.casesDataSrc.paginator = this.paginator;
+    this.casesDataSrc.sort = this.sort;
   }
 
   formDate(d: string): string {
@@ -62,6 +66,7 @@ export class CasesListComponent implements OnInit {
   }
 
   filterCases(filters: any) {
+    // console.log(filters);
     let cases = this.allCases
     cases = cases.filter((c: any) => {
 
@@ -84,4 +89,5 @@ export class CasesListComponent implements OnInit {
 
     this.casesDataSrc.data = cases
   }
+
 }

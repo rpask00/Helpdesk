@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ImageDialogComponent } from './image-dialog/image-dialog.component';
 import { UserService } from './../../services/user.service';
 import { User } from './../../models/user';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-case-comments',
@@ -14,9 +15,15 @@ export class CaseCommentsComponent implements OnInit, AfterViewChecked {
 
   @Input('caseId') caseId: string = ''
 
-  newcomment: string = ""
-  comments: { name: string, content: string, date: string }[] = []
-  imagesCount: number = 0
+    public newcomment: string = ""
+    public comments: { name: string, content: string, date: string }[] = []
+    public imagesCount: number = 0
+    public cfg: AngularEditorConfig = {
+    editable: true,
+    width: '70vw',
+    sanitize: true,
+    showToolbar: false
+  }
 
   @ViewChild('commentBox') commentBox!: ElementRef<HTMLDivElement>
 
@@ -25,7 +32,7 @@ export class CaseCommentsComponent implements OnInit, AfterViewChecked {
     private userSv: UserService
   ) { }
 
-   ngOnInit() {}
+  ngOnInit() { }
 
   async addComment() {
     if (!this.newcomment)

@@ -19,6 +19,7 @@ import { ImageDialogComponent } from './cases/case-comments/image-dialog/image-d
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CaseViewComponent } from './cases/case-view/case-view.component';
+import { MatSort } from '@angular/material/sort';
 
 @NgModule({
   declarations: [

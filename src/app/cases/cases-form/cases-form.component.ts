@@ -28,8 +28,8 @@ export class CasesFormComponent implements OnInit, OnDestroy {
   public cfg: AngularEditorConfig = {
     editable: true,
     width: '70vw',
-    sanitize: true
-
+    sanitize: true,
+    showToolbar: false
   }
 
 
@@ -106,19 +106,32 @@ export class CasesFormComponent implements OnInit, OnDestroy {
     for (let controlName of this.controlNames)
       (this.case as any)[controlName] = this.form.controls[controlName].value
 
-    if (this.case.data_zamkniecia_c instanceof Date)
-      this.case.data_zamkniecia_c = this.case.data_zamkniecia_c.toLocaleString().replace(',', '')
+    if (this.case.data_zamkniecia_c instanceof Date) {
+      let d = this.case.data_zamkniecia_c
+      let year: any = d.getFullYear()
+      let month: any = d.getMonth() + 1
+      let day: any = d.getDate()
+      let hour: any = d.getHours()
+      let min: any = d.getMinutes()
+      let sec: any = d.getSeconds()
+
+      hour = hour > 9 ? hour : '0' + hour;
+      min = min > 9 ? min : '0' + min;
+      sec = sec > 9 ? sec : '0' + sec;
+
+      this.case.data_zamkniecia_c = year + '-' + month + '-' + day + ' ' + hour + ':' + min + ':' + sec
+    }
 
     let assignedUser = this.users.find(user => user.id == this.case.assigned_user_id)
-
     this.case.assigned_user_name = assignedUser.name
+
     this.case.account_name = 'SID'
     this.case.account_id = '2f37a045-d74d-c4b1-651e-57c51ea4018b'
     this.case.description = encodeHtml(this.case.description)
 
     if (!this.id) {
       let user = await this.userSv.user
-      this.case.contact_created_by_name = user.name
+      // this.case.contact_created_by_name = user.name
       this.case.contact_created_by_id = user.id
     }
 

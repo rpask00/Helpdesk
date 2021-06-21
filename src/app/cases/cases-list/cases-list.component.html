@@ -1,79 +1,78 @@
-<app-filter-panel (onFilterValueChange)="filterCases($event)"></app-filter-panel>
+ <app-filter-panel (onFilterValueChange)="filterCases($event)"></app-filter-panel>
 
-<div class="container">
-  <table mat-table [dataSource]="casesDataSrc" class="mat-elevation-z8">
+ <div class="container">
+   <table mat-table [dataSource]="casesDataSrc" matSort class="mat-elevation-z8">
 
-    <ng-container matColumnDef="check">
-      <th [style.width]="'2%'" mat-header-cell *matHeaderCellDef> </th>
-      <td [style.width]="'2%'" mat-cell *matCellDef="let case">
-        <!-- <input type="checkbox" [checked]="checkedList.has(case.id)" (change)=check(case.id)> -->
-        <mat-checkbox [checked]="checkedList.has( case.id)" (click)=check(case.id)></mat-checkbox>
-      </td>
-    </ng-container>
+     <ng-container matColumnDef="check">
+       <th [style.width]="'2%'" mat-header-cell *matHeaderCellDef> </th>
+       <td [style.width]="'2%'" mat-cell *matCellDef="let case">
+         <mat-checkbox [checked]="checkedList.has( case.id)" (click)=check(case.id)></mat-checkbox>
+       </td>
+     </ng-container>
 
-    <ng-container matColumnDef="Numer">
-      <th [style.width]="'3%'" mat-header-cell *matHeaderCellDef> # </th>
-      <td [style.width]="'3%'" mat-cell *matCellDef="let case"> {{case.case_number}} </td>
-    </ng-container>
+     <ng-container matColumnDef="case_number">
+       <th [style.width]="'3%'" mat-header-cell *matHeaderCellDef> # </th>
+       <td [style.width]="'3%'" mat-cell *matCellDef="let case"> {{case.case_number}} </td>
+     </ng-container>
 
-    <ng-container matColumnDef="Edit">
-      <th [style.width]="'2%'" mat-header-cell *matHeaderCellDef> </th>
-      <td [style.width]="'2%'" mat-cell *matCellDef="let case">
-        <button mat-icon-button [routerLink]='["/case","edit",case.id]'>
-          <mat-icon>edit</mat-icon>
-        </button>
-      </td>
-    </ng-container>
+     <ng-container matColumnDef="Edit">
+       <th [style.width]="'2%'" mat-header-cell *matHeaderCellDef> </th>
+       <td [style.width]="'2%'" mat-cell *matCellDef="let case">
+         <button mat-icon-button [routerLink]='["/case","edit",case.id]'>
+           <mat-icon>edit</mat-icon>
+         </button>
+       </td>
+     </ng-container>
 
-    <ng-container matColumnDef="Temat">
-      <th [style.width]="'28%'" mat-header-cell *matHeaderCellDef> Temat </th>
-      <td [style.width]="'28%'" mat-cell *matCellDef="let case">
+     <ng-container matColumnDef="name">
+       <th [style.width]="'28%'" mat-header-cell *matHeaderCellDef mat-sort-header> Temat </th>
+       <td [style.width]="'28%'" mat-cell *matCellDef="let case">
 
-        <a mat-button [routerLink]="['/case','view',case.id]">{{case.name}}</a>
+         <a mat-button [routerLink]="['/case','view',case.id]">{{case.name}}</a>
 
-      </td>
-    </ng-container>
+       </td>
+     </ng-container>
 
-    <ng-container matColumnDef="Aplikacja">
-      <th [style.width]="'5%'" mat-header-cell *matHeaderCellDef> Aplikacja </th>
-      <td [style.width]="'5%'" mat-cell *matCellDef="let case"> {{case.account_name}} </td>
-    </ng-container>
+     <ng-container matColumnDef="account_name">
+       <th [style.width]="'5%'" mat-header-cell *matHeaderCellDef mat-sort-header> Aplikacja </th>
+       <td [style.width]="'5%'" mat-cell *matCellDef="let case"> {{case.account_name}} </td>
+     </ng-container>
 
-    <ng-container matColumnDef="Status">
-      <th [style.width]="'10%'" mat-header-cell *matHeaderCellDef> Status </th>
-      <td [style.width]="'10%'" mat-cell *matCellDef="let case"> {{statuses[case.status]}} </td>
-    </ng-container>
+     <ng-container matColumnDef="status">
+       <th [style.width]="'10%'" mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+       <td [style.width]="'10%'" mat-cell *matCellDef="let case"> {{statuses[case.status]}} </td>
+     </ng-container>
 
-    <ng-container matColumnDef="Ważnść">
-      <th [style.width]="'10%'" mat-header-cell *matHeaderCellDef> Ważnść </th>
-      <td [style.width]="'10%'" mat-cell *matCellDef="let case"> {{case.waznosc_c}} </td>
-    </ng-container>
-
-
-    <ng-container matColumnDef="Rodzaj">
-      <th [style.width]="'10%'" mat-header-cell *matHeaderCellDef> Rodzaj </th>
-      <td [style.width]="'10%'" mat-cell *matCellDef="let case"> {{types[case.type]}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="Data wprowadzenia">
-      <th [style.width]="'10%'" mat-header-cell *matHeaderCellDef> Data wprowadzenia </th>
-      <td [style.width]="'10%'" mat-cell *matCellDef="let case"> {{formDate(case.date_entered)}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="Gwarantowany termin">
-      <th [style.width]="'10%'" mat-header-cell *matHeaderCellDef> Gwarantowany termin </th>
-      <td [style.width]="'10%'" mat-cell *matCellDef="let case"> {{case.termin_realizacji_c}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="Przydzielona do">
-      <th [style.width]="'10%'" mat-header-cell *matHeaderCellDef> Przydzielona do </th>
-      <td [style.width]="'10%'" mat-cell *matCellDef="let case"> {{case.assigned_user_name}} </td>
-    </ng-container>
+     <ng-container matColumnDef="waznosc_c">
+       <th [style.width]="'10%'" mat-header-cell *matHeaderCellDef mat-sort-header> Ważnść </th>
+       <td [style.width]="'10%'" mat-cell *matCellDef="let case"> {{case.waznosc_c}} </td>
+     </ng-container>
 
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+     <ng-container matColumnDef="type">
+       <th [style.width]="'10%'" mat-header-cell *matHeaderCellDef mat-sort-header> Rodzaj </th>
+       <td [style.width]="'10%'" mat-cell *matCellDef="let case"> {{types[case.type]}} </td>
+     </ng-container>
 
-</div>
+     <ng-container matColumnDef="date_entered">
+       <th [style.width]="'10%'" mat-header-cell *matHeaderCellDef mat-sort-header> Data wprowadzenia </th>
+       <td [style.width]="'10%'" mat-cell *matCellDef="let case"> {{formDate(case.date_entered)}} </td>
+     </ng-container>
+
+     <ng-container matColumnDef="termin_realizacji_c">
+       <th [style.width]="'10%'" mat-header-cell *matHeaderCellDef mat-sort-header> Gwarantowany termin </th>
+       <td [style.width]="'10%'" mat-cell *matCellDef="let case"> {{case.termin_realizacji_c}} </td>
+     </ng-container>
+
+     <ng-container matColumnDef="assigned_user_name">
+       <th [style.width]="'10%'" mat-header-cell *matHeaderCellDef mat-sort-header> Przydzielona do </th>
+       <td [style.width]="'10%'" mat-cell *matCellDef="let case"> {{case.assigned_user_name}} </td>
+     </ng-container>
+
+
+     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+   </table>
+   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+ </div> -->
