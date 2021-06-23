@@ -10,7 +10,7 @@ import { UserService } from './user.service';
 export class ApiService {
 
 
-  url = "https://hdropczyce.e-bi.pl/service/v4_1/rest.php"
+  private url = "https://hdropczyce.e-bi.pl/service/v4_1/rest.php"
 
   constructor(
     private http: HttpClient,
@@ -25,11 +25,14 @@ export class ApiService {
       rest_data: JSON.stringify({
         session: this.userSv.session,
         module_name,
-        offset
+        offset,
       })
 
     })
   }
+
+
+
 
   async getModules(): Promise<any> {
     return await $.post(this.url, {

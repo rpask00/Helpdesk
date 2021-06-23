@@ -11,8 +11,8 @@
      </ng-container>
 
      <ng-container matColumnDef="case_number">
-       <th [style.width]="'3%'" mat-header-cell *matHeaderCellDef> # </th>
-       <td [style.width]="'3%'" mat-cell *matCellDef="let case"> {{case.case_number}} </td>
+       <th [style.width]="'2%'" mat-header-cell *matHeaderCellDef> # </th>
+       <td [style.width]="'2%'" mat-cell *matCellDef="let case"> {{case.case_number}} </td>
      </ng-container>
 
      <ng-container matColumnDef="Edit">
@@ -25,8 +25,8 @@
      </ng-container>
 
      <ng-container matColumnDef="name">
-       <th [style.width]="'28%'" mat-header-cell *matHeaderCellDef mat-sort-header> Temat </th>
-       <td [style.width]="'28%'" mat-cell *matCellDef="let case">
+       <th [style.width]="'27%'" mat-header-cell *matHeaderCellDef mat-sort-header> Temat </th>
+       <td [style.width]="'27%'" mat-cell *matCellDef="let case">
 
          <a mat-button [routerLink]="['/case','view',case.id]">{{case.name}}</a>
 
@@ -34,8 +34,8 @@
      </ng-container>
 
      <ng-container matColumnDef="account_name">
-       <th [style.width]="'5%'" mat-header-cell *matHeaderCellDef mat-sort-header> Aplikacja </th>
-       <td [style.width]="'5%'" mat-cell *matCellDef="let case"> {{case.account_name}} </td>
+       <th [style.width]="'6%'" mat-header-cell *matHeaderCellDef mat-sort-header> Aplikacja </th>
+       <td [style.width]="'6%'" mat-cell *matCellDef="let case"> {{case.account_name}} </td>
      </ng-container>
 
      <ng-container matColumnDef="status">
@@ -73,6 +73,6 @@
      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
    </table>
-   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+   <mat-paginator [pageSizeOptions]="[ 10, 20]" showFirstLastButtons></mat-paginator>
 
  </div> -->

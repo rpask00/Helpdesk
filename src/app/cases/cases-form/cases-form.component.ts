@@ -48,7 +48,7 @@ export class CasesFormComponent implements OnInit, OnDestroy {
   }
 
   private isAdmin = true
-  private adminControlNames: string[] = ['type', 'state', 'contact_created_by_id', 'data_zamkniecia_c', 'status', 'assigned_user_id', 'assigned_user_name', 'contact_created_by_name']
+  private adminControlNames: string[] = ['type', 'state', 'data_zamkniecia_c', 'status', 'assigned_user_id']
   private controlNames: string[] = ['name', 'description']
 
   constructor(
@@ -58,7 +58,7 @@ export class CasesFormComponent implements OnInit, OnDestroy {
     private toastr: ToastrService,
     private router: Router
   ) {
-    let controlOptions: any = { updateOn: "blur", validators: [Validators.required] }
+    let controlOptions: any = { updateOn: "change", validators: [Validators.required] }
 
     for (let adminControlName of this.adminControlNames) {
       let defaulvalue = (this.case as any)[adminControlName]
@@ -92,7 +92,6 @@ export class CasesFormComponent implements OnInit, OnDestroy {
       this.states = this.statuses[s]
     })
     this.subs.push(sub)
-
   }
 
 
